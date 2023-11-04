@@ -1,0 +1,31 @@
+{% extends "user/base.html" %}
+{% block content %}
+{% for order in orders %}
+<div class="order-box">
+  <div class="order-product-info">
+    <img src="{{ order.product.product_img }}">
+  </div>
+  <div class="order-product-text">
+      <p class="order_time">{{ order.order_create_time }}</p>
+      <p class="product-name">{{ order.product.product_name }}</p>
+      <p class="supplier-name">{{ order.vendor.vendor_name }}</p>
+      <p class="price">${{ order.product.product_price }}</p>
+  </div>
+  <div class="quantity">Quantity:{{ order.product_amount }}</div>
+  <div class="order-total-price">${{ order.product.product_price * order.product_amount }}</div>
+  <div class="delivery-info">
+    <p class="order-status">
+        Order Status: {% if order.order_status == 0 %}
+          Not Shipped
+        {% elif order.order_status == 1 %}
+          Shipped
+        {% endif %}
+        {% if order.order_status == 1 %}
+          Your order will be delivered in 3 days.
+        {% endif %}
+    </p>
+    <button class="confirm-btn">Confirm receipt</button>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

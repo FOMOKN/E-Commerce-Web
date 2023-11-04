@@ -1,0 +1,36 @@
+{% extends "vendor/base.html" %}
+{% block content %}
+<div class="product-container">
+{% for product in products %}
+ <div class="product-box">
+     <div class="vendor_product_image">
+       <img class="product-image" src="{{ product.product_img }}">
+     </div>
+     <div class="vendor_product_info">
+       <p class="product-name">{{ product.product_name }}</p>
+       <p class="product-category">{{ product.category_name }}</p>
+       <p class="product-description">{{ product.product_desc }}</p>
+     </div>
+     <div class="vendor_product_price">
+       <span class="original-price">${{ product.product_price }}</span>
+       <span class="discount-status">Discount status: {% if product.product_discount_status == 1 %}YES{% else %}NO{% endif %}</span>
+       <span class="current-price">${{ product.product_discount_price }}</span>
+       <p class="discount-deadline">Discount deadline: {{ product.product_discount_deadline }}</p>
+     </div>
+     <div class="product_link">
+       <a href="{{ url_for('vendor_edit_product', product_id=product.id) }}" class="edit-link">Edit</a>
+       <a href="/vendor_delete_product/{{ product.id }}" class="delete-link">Delete</a>
+     </div>
+ </div>
+{% endfor %}
+</div>
+{% if inform %}
+<div>
+    <div id="popup-container" style="display: none;">
+        <p>{{ inform }}</p>
+    </div>
+    <script src="/static/vendor/js/inform.js"></script>
+</div>
+{% endif %}
+{% endblock %}
+

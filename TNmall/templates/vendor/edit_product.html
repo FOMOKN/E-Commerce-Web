@@ -1,0 +1,33 @@
+{% extends "vendor/base.html" %}
+{% block content %}
+<div class="edit-product-container">
+ <form action="/vendor_edit_product" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="product_id" value="{{ product.id }}">
+      <div class="form-container">
+        <div>
+          <label for="origin-price" style="color: #fff;">Origin Price:</label>
+          <input type="number" name="origin_price" id="origin-price" step="0.1" min="0" required>
+        </div>
+        <div>
+          <label for="discount-checkbox" style="color: #fff;">Discount:</label>
+          <input type="checkbox" name="discount_checkbox" id="discount-checkbox">
+        </div>
+        <div>
+          <label for="current-price" style="color: #fff;">Current Price:</label>
+          <input type="number" name="current_price" id="current-price" step="0.1" min="0">
+        </div>
+        <div>
+          <label for="discount-deadline" style="color: #fff;">Deadline:</label>
+          <input type="datetime-local" name="discount_deadline" id="discount-deadline">
+        </div>
+        <div>
+          <label for="product-description" style="color: #fff;">Description:</label>
+          <textarea name="product_description" id="product-description"></textarea>
+        </div>
+        <div style="text-align:center;">
+          <button type="submit">Save</button>
+        </div>
+      </div>
+ </form>
+</div>
+{% endblock %}

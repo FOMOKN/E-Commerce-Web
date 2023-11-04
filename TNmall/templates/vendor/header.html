@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval';">
+     <title>My shop</title>
+     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='vendor/css/style.css')}}" >
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="Header">
+    <div class="Top">
+      <div class="selection">
+          <div class="selection">
+              <a href="{{ url_for('logout') }}" style='color: #fff; text-decoration: none;'>Logout</a>
+          </div>
+      </div>
+    </div>
+    <div class="Shop">
+      <div class="Logo">
+          <img src="{{url_for('static',filename='vendor/images/logo.png')}}" width="65%" height="65%">
+      </div>
+      <div class="vendor">
+        <div class="vendor_name" id="vendor_name">
+            {% if not vendor_name %}
+            <b>My shop</b>
+            {% else %}
+            <b>{{ vendor_name }}</b>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+
+<script src="/static/vendor/js/inform.js"></script>

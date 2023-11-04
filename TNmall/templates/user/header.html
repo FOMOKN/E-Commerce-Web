@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval';">
+      <title>TN mall</title>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='user/css/style.css')}}" >
+   </head>
+   <body>
+      <div class="container">
+         <div class="Header">
+            <div class="Top">
+               <div class="selection">
+                  {% if not customer_name %}
+                    <a href="{{url_for('user_login')}}" style='color: #fff; text-decoration: none;'>Login</a>&nbsp; ｜ &nbsp;
+                    <a href="{{url_for('user_register')}}" style='color: #fff; text-decoration: none;'>Register</a>&nbsp; ｜ &nbsp;
+                    <a href="{{url_for('vendor_login')}}" style='color: #fff; text-decoration: none;'>I'm vendor</a>
+                  {% else %}
+                    <a style='color: #fff; text-decoration: none;'>Hi! {{ customer_name }}</a>&nbsp; ｜ &nbsp;
+                    <a href="{{ url_for('user_order') }}" style='color: #fff; text-decoration: none;'>My order</a>&nbsp; ｜ &nbsp;
+                    <a href="{{ url_for('logout') }}" style='color: #fff; text-decoration: none;'>Logout</a>
+                  {% endif %}
+               </div>
+            </div>
+            <div class="Shop">
+               <div class="Logo">
+                  <img src="{{url_for('static',filename='user/images/logo.png')}}" width="65%" height="65%">
+               </div>
+               <div class="Search">
+                  <div class="Search-box">
+                    <form method="post" action="/search_product" class="search-form">
+                      <label for="search-input" class="sr-only"></label>
+                      <input type="text" id="search-input" name="keyword" class="search-input" aria-label="Search">
+                      <button type="submit" class="search-btn">
+                        <i class="fa fa-search">GO</i>
+                      </button>
+                    </form>
+                  </div>
+               </div>
+               <div class="cart">
+                   <div class="mycart">
+                       {% if not customer_id %}
+                           <a href="{{ url_for('user_login') }}" style="color: #66afe9; text-decoration: none;">
+                               <b>My Cart</b>
+                           </a>
+                       {% else %}
+                           <a href="{{ url_for('cart') }}" style="color: #66afe9; text-decoration: none;">
+                               <b>My Cart</b>
+                           </a>
+                       {% endif %}
+                   </div>
+               </div>
+            </div>
+            <div class="category" >
+               <div class="home">
+                  <a id="index" class="home" href="{{url_for('index')}}" style='color: #fff; text-decoration: none;'>
+                  Home
+                  </a>
+               </div>
+               <div class="c1">
+                  <a id="Clothing" href="{{url_for('category_product', category_id=1)}}" style='color: #fff; text-decoration: none;'>
+                  Clothing
+                  </a>
+               </div>
+               <div class="c2">
+                  <a id="appliance" href="{{url_for('category_product', category_id=2)}}" style='color: #fff; text-decoration: none;'>
+                  Appliance
+                  </a>
+               </div>
+               <div class="c3">
+                  <a id="Electronic" href="{{url_for('category_product', category_id=3)}}" style='color: #fff; text-decoration: none;'>
+                  Electronic
+                  </a>
+               </div>
+               <div class="c4">
+                  <a id="Cosmetic" href="{{url_for('category_product', category_id=4)}}" style='color: #fff; text-decoration: none;'>
+                  Cosmetic
+                  </a>
+               </div>
+               <div class="c5">
+                  <a id="Book" href="{{url_for('category_product', category_id=7)}}" style='color: #fff; text-decoration: none;'>
+                  Book
+                  </a>
+               </div>
+               <div class="c6">
+                  <a id="other" href="{{url_for('category_product', category_id=8)}}" style='color: #fff; text-decoration: none;'>
+                  Other
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+

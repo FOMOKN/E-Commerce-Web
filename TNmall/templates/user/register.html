@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval';">
+    <title>Join US!</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='user/css/login_register.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>User Register</h1>
+        </div>
+        <div class="main">
+            <form action="{{ url_for('user_register') }}" autocomplete="off" method="post">
+                <span>
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name="customer_name" required>
+                </span><br>
+                <span>
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Phone" name="customer_phone" required>
+                </span><br>
+                <span>
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="E_mail" name="customer_email" required>
+                </span><br>
+                <span>
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Address" name="customer_address" required>
+                </span><br>
+                <span>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name="customer_password" required>
+                </span><br>
+                <button style="color: #000;">Register</button>
+            </form>
+        </div>
+    </div>
+    {% if error_message %}
+     <div id="popup-container" style="display: none;">
+        <p>{{ error_message }}</p>
+     </div>
+     <script src="/static/user/js/errorMessage.js"></script>
+    {% endif %}
+</body>
+</html>

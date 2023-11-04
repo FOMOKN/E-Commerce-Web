@@ -1,0 +1,57 @@
+{% extends "user/base.html" %}
+{% block content %}
+<div class="product-detail">
+  <div class="detail-product-image">
+    <img src="/{{ product.product_img }}">
+  </div>
+  <div class="detail-product-info">
+    <h1>{{ product.product_name }}</h1>
+    <p>Vendor: {{ product.vendor_name }}</p>
+    <p>Category: {{ product.category_name }}</p>
+    <p>Description: {{ product.product_desc }}</p>
+    <p class="product-detail-price"><b>Current price: ${{ product.product_current_price }}</b></p>
+    <p>Discount status: {% if product.product_discount_status == 1 %}YES{% else %}NO{% endif %}</p>
+    <p>Discount deadline: {{ product.product_discount_deadline }}</p>
+    <div class="button-container">
+      <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post">
+          <div class="product_detail_quantity">
+              <label for="product-amount-input-cart">Quantity:</label>
+              <input type="number" name="product_amount" min="1" value="1" id="product-amount-input-cart" required>
+          </div>
+          <button type="submit" class="add-to-cart"><b>Add to Cart</b></button>
+          <button class="buy-now" formaction="{{ url_for('buy_now', product_id=product.id) }}"><b>Buy Now</b></button>
+      </form>
+      <form action="{{ url_for('like', product_id=product.id) }}" method="post">
+        <button class="like" type="submit">
+        <i class="fas fa-thumbs-up"></i>
+        <span class="like-count"><b>Like {{ product.product_like }}</b></span>
+        </button>
+      </form>
+      <form action="{{ url_for('dislike', product_id=product.id) }}" method="post">
+        <button class="dislike" type="submit">
+        <i class="fas fa-thumbs-down"></i>
+        <span class="dislike-count"><b>Dislike {{ product.product_dislike }}</b></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="product-reviews">
+  <h2>Product Reviews</h2>
+  <form action="{{ url_for('product_detail', product_id=product.id) }}" autocomplete="off" method="post">
+    <label for="review">Add a Review:</label>
+    <textarea id="review" name="review" required></textarea>
+      <button type="submit"><b>Submit</b></button>
+  </form>
+  {% for comment in comments %}
+  <div class="reviews">
+    <div class="review">
+      <h3>{{ comment.customer_name }}</h3>
+      <p class="date">{{ comment.feedback_time }}</p>
+      <p>{{ comment.feedback_content }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

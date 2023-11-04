@@ -1,0 +1,38 @@
+{% extends "vendor/base.html" %}
+{% block content %}
+<div class="vendor-order-container">
+{% for order in orders %}
+  <div class="vendor-order-box">
+    <div class="order-product-image">
+      <img src="{{ order.product_img }}">
+    </div>
+    <div class="product-info-text">
+      <p class="order_time">{{ order.order_create_time }}</p>
+      <p class="product-name">{{ order.product_name }}</p>
+    </div>
+    <div class="customer-info-text">
+      <p class="customer-name">{{ order.customer_name }}</p>
+      <p class="customer-address">{{ order.customer_address }}</p>
+      <p class="customer-tel">{{ order.customer_phone }}</p>
+    </div>
+    <div class="quantity">Quantity: {{ order.product_amount }}</div>
+    <div class="total-price">${{ order.order_total }}</div>
+    <div class="deliver">
+      <p class="order-status">
+        Order Status: {% if order.order_status == 0 %}
+          Not Shipped
+        {% elif order.order_status == 1 %}
+          Shipped
+        {% endif %}
+      </p>
+      {% if order.order_status == 0 %}
+      <form action="{{ url_for('vendor_order') }}" method="post">
+        <input type="hidden" name="order_id" value="{{ order.id }}">
+        <button class="deliver-btn">Deliver</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

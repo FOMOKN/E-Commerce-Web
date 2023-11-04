@@ -1,0 +1,17 @@
+{% extends "user/base.html" %}
+{% block content %}
+<div class="product-list">
+{% for product in products %}
+  <div class="product-box">
+    <a href="{{ url_for('product_detail', product_id=product.id) }}">
+        <img src="/{{ product.product_img }}">
+    </a>
+    <div class="name-price-box">
+        <span class="name">{{ product.product_name }}</span>
+        <span class="original-price">${{ product.product_price }}</span>
+        <span class="sale-price">${{ product.product_discount_price }}</span>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
