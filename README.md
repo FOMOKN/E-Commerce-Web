@@ -1,5 +1,4 @@
 # E-commerce-Platform
-A shopping website that allows users to buy and sell various things of different categories. 
 
 • Buyers can create accounts with a username, password, address, email, phone number and buy one or more products, like or dislike it, post comments, and read comments other buyers have posted.
 
