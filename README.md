@@ -6,9 +6,9 @@
 
 The products are divided into categories containing products from the same type has a name, description, price, vendor name, number of likes/dislikes, user’s comments and an “add to cart” button
 
-Front-end： HTML, CSS, JavaScript AJAX，mysql-connector.
+Client: HTML, CSS, JavaScript AJAX，mysql-connector.
 
-Back-end: Flask, MySQL.
+Server: Flask, MySQL.
 
-The website is fully validated in terms of accessibility, device adaptability.
+The website is fully validated in terms of accessibility, device adaptability, functionality and protection of customer data privacy.
  
